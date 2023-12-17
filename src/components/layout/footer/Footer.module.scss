@@ -1,0 +1,34 @@
+.footer {
+  width: 100vw;
+  min-height: 236px;
+  background-color: black;
+
+  padding: 40px;
+
+  .footers {
+    margin: 60px;
+    .icon {
+      margin-left: 20px;
+      color: aliceblue;
+      cursor: pointer;
+
+      i {
+        font-size: 25px;
+        margin-right: 15px;
+      }
+    }
+    .content {
+      .footer-link {
+        padding: 0px;
+        list-style-type: none;
+        .footer-link-wrap {
+          color: gray;
+        }
+      }
+    }
+    .cp {
+      // margin-left: 10px;
+      color: var(--color_1);
+    }
+  }
+}
