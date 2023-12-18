@@ -1,35 +1,49 @@
 import classNames from "classnames/bind";
-import styles from "./cartoon.module.scss";
-import React, { useState, useEffect } from "react";
+import styles from "./Cartoon.module.scss";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { MultiCarousel } from "../../../Carousel";
+import dtcontext from "../../../DataContext";
 const cx = classNames.bind(styles);
-export function Pupular() {
-  const [dataFilms, setDataFilms] = useState([]);
-  useEffect(() => {
-    listFilm();
-  }, []);
-  const listFilm = async () => {
-    try {
-      const reponse = await axios.get(
-        "https://ophim1.com/danh-sach/phim-moi-cap-nhat"
-      );
+export function Cartoon() {
+  const dt = useContext(dtcontext);
 
-      setDataFilms(reponse.data.items);
-    } catch (error) {
-      return console.log("error fetching api: ", error);
+  const [dataDetailFilms, setDataDetailFilms] = useState([]);
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        const detailPromises = dt.dataFilms.map(async (filmss) => {
+          const responseData = await axios.get(
+            `https://ophim1.com/phim/${filmss.slug}`
+          );
+          return responseData.data.movie;
+        });
+
+        const responDetail = await Promise.all(detailPromises);
+        setDataDetailFilms(responDetail);
+      } catch (error) {
+        console.error("Error fetching detail API: ", error);
+      }
+    };
+    // Fetch details only if there are films
+    if (dt.dataFilms.length > 0) {
+      fetchDetails();
     }
-  };
+  }, [dt.dataFilms]);
+
+  const cartoon = dataDetailFilms
+    .filter((ok) => ok.type === "hoathinh")
+    .map((i) => (
+      <div className={cx("imga")} key={i._id}>
+        <img src={i.poster_url}></img>
+      </div>
+    ));
+
   return (
-    <div>
-      {" "}
-      {dataFilms.map((films) => (
-        <div key={films._id} className={cx("top-film")}>
-          <div>{films.name}</div>
-          <div>{films.modified.time}</div>
-        </div>
-      ))}
+    <div className={cx("containers")}>
+      <MultiCarousel dta={cartoon} />
     </div>
   );
 }

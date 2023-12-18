@@ -1,32 +1,20 @@
 import classNames from "classnames/bind";
 import styles from "./popular.module.scss";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "react-multi-carousel/lib/styles.css";
 import { MultiCarousel } from "../../../Carousel";
+import dtcontext from "../../../DataContext";
 const cx = classNames.bind(styles);
 export function Popular() {
-  const [dataFilms, setDataFilms] = useState([]);
+  const dt = useContext(dtcontext);
+
   const [dataDetailFilms, setDataDetailFilms] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://ophim1.com/danh-sach/phim-moi-cap-nhat"
-        );
-        setDataFilms(response.data.items);
-      } catch (error) {
-        console.error("Error fetching list API: ", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-  useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const detailPromises = dataFilms.map(async (filmss) => {
+        const detailPromises = dt.dataFilms.map(async (filmss) => {
           const responseData = await axios.get(
             `https://ophim1.com/phim/${filmss.slug}`
           );
@@ -40,22 +28,22 @@ export function Popular() {
       }
     };
     // Fetch details only if there are films
-    if (dataFilms.length > 0) {
+    if (dt.dataFilms.length > 0) {
       fetchDetails();
     }
-  }, [dataFilms]);
+  }, [dt.dataFilms]);
+
+  const popular = dataDetailFilms.map((ok) => (
+    <div className={cx("imga")} key={ok._id}>
+      <div>
+        <img src={ok.poster_url} alt={ok.title} />
+      </div>
+    </div>
+  ));
 
   return (
     <div className={cx("containers")}>
-      <MultiCarousel dataDetailFilms={dataDetailFilms} />
-      {/* {dataDetailFilms.map((ok) => (
-        <div key={ok._id}>
-          <div className={cx("imga")}>
-            <img src={ok.poster_url} alt={ok.title} />
-            {ok.year}
-          </div>
-        </div>
-      ))} */}
+      <MultiCarousel dta={popular} />
     </div>
   );
 }

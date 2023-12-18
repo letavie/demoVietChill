@@ -1,6 +1,9 @@
-.containers {
-  .imga {
-    width: 100px;
-    height: auto;
+.imga {
+  height: 200px;
+  margin-bottom: 20px;
+  img {
+    width: 95%;
+    // height: 12.5rem;
+    height: 100%;
   }
 }

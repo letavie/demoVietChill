@@ -5,10 +5,9 @@ import styles from "./Home.module.scss";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import tgmq from "../../assets/images/TGMQ.jpg";
-import Comedy from "../../components/layout/category/comedy/comedy";
-// import { MultiCarousel } from "../../components/Carousel";
+import { Cartoon } from "../../components/layout/category/cartoon/cartoon";
 import { Popular } from "../../components/layout/category/popular";
-import { MultiCarousel } from "../../components/Carousel";
+import { Comedy } from "../../components/layout/category/comedy/comedy";
 const cx = classNames.bind(styles);
 
 export default function Home() {
@@ -42,10 +41,11 @@ export default function Home() {
         <div className={cx("popular")}>
           <h1>Popular movies</h1>
           <Popular />
+          <h1>Cartoon movies</h1>
+          <Cartoon />
+          <h1>Comedy movies</h1>
+          <Comedy />
         </div>
-        {/* <div className="comedi">
-          <Comedy></Comedy>
-        </div> */}
       </div>
     </div>
   );
