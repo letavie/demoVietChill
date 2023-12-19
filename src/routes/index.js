@@ -3,6 +3,7 @@ import Footer from "../components/layout/footer";
 import Home from "../pages/Home";
 import { DefaultLayout } from "../components/layout/DefaultLayout";
 import Comedy from "../components/layout/category/comedy/comedy";
+import MovieDetails from "../components/layout/movieDetail/movieDetail";
 import { MultiCarousel } from "../components/Carousel";
 const publicRoutes = [
   {
@@ -10,8 +11,8 @@ const publicRoutes = [
     component: Home,
   },
   {
-    path: "test",
-    component: MultiCarousel,
+    path: "detail/:id",
+    component: MovieDetails,
   },
   //   {
   //     path: "/he",

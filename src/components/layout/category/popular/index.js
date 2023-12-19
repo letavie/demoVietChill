@@ -5,6 +5,7 @@ import axios from "axios";
 import "react-multi-carousel/lib/styles.css";
 import { MultiCarousel } from "../../../Carousel";
 import dtcontext from "../../../DataContext";
+import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 export function Popular() {
   const dt = useContext(dtcontext);
@@ -35,9 +36,9 @@ export function Popular() {
 
   const popular = dataDetailFilms.map((ok) => (
     <div className={cx("imga")} key={ok._id}>
-      <div>
+      <Link to={`detail/${ok.slug}`}>
         <img src={ok.poster_url} alt={ok.title} />
-      </div>
+      </Link>
     </div>
   ));
 
