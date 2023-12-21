@@ -1,10 +1,10 @@
 .contai {
   padding: 50px 0px;
-  height: 200vh;
+  min-height: 150vh;
   background-color: rgb(51, 51, 51);
 
   .content {
-    height: 40rem;
+    min-height: 80vh;
     background-color: #242424;
     margin: 50px 150px 0px 150px;
     padding: 10px;
@@ -15,10 +15,34 @@
       display: flex;
 
       .imga {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         width: 30%;
+        margin-top: 2rem;
+        .xp {
+          margin: 10px 0px;
+          button {
+            margin: 5px;
+            width: 100px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            background-color: var(--color-3);
+            color: aliceblue;
+            font-weight: 500;
+            &:hover {
+              background-color: #9c9393;
+            }
+            &:active {
+              background-color: #612323;
+            }
+          }
+        }
         img {
-          width: 70%;
-          height: auto;
+          width: 20vw;
+          height: 60vh;
           border-radius: 15px;
         }
       }
@@ -54,7 +78,7 @@
     }
   }
   .bodyy {
-    height: 30rem;
+    min-height: 60vh;
     background-color: #242424;
     margin: 20px 150px;
     padding: 10px;

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "react-multi-carousel/lib/styles.css";
 import { MultiCarousel } from "../../../Carousel";
+
 import dtcontext from "../../../DataContext";
 import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
@@ -15,7 +16,7 @@ export function Popular() {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const detailPromises = dt.dataFilms.map(async (filmss) => {
+        const detailPromises = dt.dataFilms.films.map(async (filmss) => {
           const responseData = await axios.get(
             `https://ophim1.com/phim/${filmss.slug}`
           );
@@ -29,10 +30,10 @@ export function Popular() {
       }
     };
     // Fetch details only if there are films
-    if (dt.dataFilms.length > 0) {
+    if (dt.dataFilms.films.length > 0) {
       fetchDetails();
     }
-  }, [dt.dataFilms]);
+  }, [dt.dataFilms.films]);
 
   const popular = dataDetailFilms.map((ok) => (
     <div className={cx("imga")} key={ok._id}>

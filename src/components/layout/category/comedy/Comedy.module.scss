@@ -1,9 +1,9 @@
 .imga {
   width: 100%; // Ensure the container takes the full width available
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   img {
     width: 95%;
-    height: auto;
+    max-height: 20.5vh;
     background-size: cover;
   }
 }

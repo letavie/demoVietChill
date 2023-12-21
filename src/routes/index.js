@@ -5,6 +5,8 @@ import { DefaultLayout } from "../components/layout/DefaultLayout";
 import Comedy from "../components/layout/category/comedy/comedy";
 import MovieDetails from "../components/layout/movieDetail/movieDetail";
 import { MultiCarousel } from "../components/Carousel";
+import { DataContextProvider } from "../components/DataContext";
+import WatchMovie from "../components/layout/watchMovie/WatchMovie";
 const publicRoutes = [
   {
     path: "/",
@@ -13,6 +15,14 @@ const publicRoutes = [
   {
     path: "detail/:id",
     component: MovieDetails,
+  },
+  {
+    path: "data",
+    component: DataContextProvider,
+  },
+  {
+    path: "watch-movie/:id",
+    component: WatchMovie,
   },
   //   {
   //     path: "/he",

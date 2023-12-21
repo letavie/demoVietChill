@@ -14,7 +14,7 @@ export function Cartoon() {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const detailPromises = dt.dataFilms.map(async (filmss) => {
+        const detailPromises = dt.dataFilms.films.map(async (filmss) => {
           const responseData = await axios.get(
             `https://ophim1.com/phim/${filmss.slug}`
           );
@@ -28,10 +28,10 @@ export function Cartoon() {
       }
     };
     // Fetch details only if there are films
-    if (dt.dataFilms.length > 0) {
+    if (dt.dataFilms.films.length > 0) {
       fetchDetails();
     }
-  }, [dt.dataFilms]);
+  }, [dt.dataFilms.films]);
 
   const cartoon = dataDetailFilms
     .filter((ok) => ok.type === "hoathinh")

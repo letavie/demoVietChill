@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import classNames from "classnames/bind";
 import styles from "./MovieDetails.module.scss";
+import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 function MovieDetails() {
   const [dtDetai, setDtDetail] = useState({});
@@ -13,15 +14,15 @@ function MovieDetails() {
     const fetchDetailFilms = async () => {
       try {
         const repo = await axios.get(`https://ophim1.com/phim/${id}`);
-        setDtDetail(repo.data.movie);
         setEpisodes(repo.data.episodes);
+        setDtDetail(repo.data.movie);
       } catch (error) {
         console.log("fetch to err", error);
       }
     };
     fetchDetailFilms();
+    window.scrollTo(0, 0);
   }, []);
-  // handle dtDetai
   const cate = (dtDetai.category ?? []).map((cate) => cate.name).join(", ");
   const actorString =
     dtDetai.actor && dtDetai.actor.length > 1
@@ -32,15 +33,19 @@ function MovieDetails() {
       ? dtDetai.director.join(", ")
       : "N/A";
   const contry = (dtDetai.country ?? []).map((cate) => cate.name);
+
   //handle episodes
-  console.log(episodes.server_name);
+  // const dataFilmss = dt.dataFilms.films.map((ok) => ok.name);
   return (
-    //body 1
     <div className={cx("contai")}>
       <div className={cx("content")}>
         <div className={cx("header")}>
           <div className={cx("imga")}>
             <img src={dtDetai.thumb_url} alt="img" />
+            <div className={cx("xp")}>
+              <button>Xem Phim</button>
+              <button>Trailer</button>
+            </div>
           </div>
           <div className={cx("context")}>
             <div className={cx("title")}>
@@ -106,12 +111,15 @@ function MovieDetails() {
         </div>
       </div>
       {/* body 2 */}
+
       <div className={cx("bodyy")}>
         <div className={cx("nd")}>
           <h1>Nội dung phim</h1>
           <i>{dtDetai.content}</i>
         </div>
+
         {/* list episodes of movie */}
+
         {episodes.map((episode, index) => (
           <div className={cx("tp")}>
             <div className={cx("title")}>
@@ -121,7 +129,10 @@ function MovieDetails() {
             <div className={cx("episodes")}>
               {" "}
               {episode.server_data.map((tap, index) => (
-                <button key={index.slug}>{tap.name}</button>
+                <Link to={`/watch-movie/${dtDetai.slug}-tap${tap.name}`}>
+                  {" "}
+                  <button key={index.slug}>{tap.name}</button>
+                </Link>
               ))}
             </div>
           </div>

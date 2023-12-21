@@ -4,15 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import GlobalStyles from "./components/GlobalStyles";
-import { DataContext } from "./components/DataContext";
+import { DataContextProvider } from "./components/DataContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
     <GlobalStyles>
-      <DataContext>
+      <DataContextProvider>
         <App />
-      </DataContext>
+      </DataContextProvider>
     </GlobalStyles>
   </React.StrictMode>
 );
