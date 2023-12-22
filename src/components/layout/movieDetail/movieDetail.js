@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import classNames from "classnames/bind";
 import styles from "./MovieDetails.module.scss";
 import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
-function MovieDetails() {
+export function MovieDetails() {
   const [dtDetai, setDtDetail] = useState({});
   const [episodes, setEpisodes] = useState([]);
   let { id } = useParams();
-
   useEffect(() => {
     const fetchDetailFilms = async () => {
       try {
@@ -23,6 +22,7 @@ function MovieDetails() {
     fetchDetailFilms();
     window.scrollTo(0, 0);
   }, []);
+
   const cate = (dtDetai.category ?? []).map((cate) => cate.name).join(", ");
   const actorString =
     dtDetai.actor && dtDetai.actor.length > 1
@@ -34,9 +34,9 @@ function MovieDetails() {
       : "N/A";
   const contry = (dtDetai.country ?? []).map((cate) => cate.name);
 
-  //handle episodes
-  // const dataFilmss = dt.dataFilms.films.map((ok) => ok.name);
   return (
+    // <div>
+    //   {dt.dataFilms.movies.map((ok) => (
     <div className={cx("contai")}>
       <div className={cx("content")}>
         <div className={cx("header")}>
@@ -110,16 +110,11 @@ function MovieDetails() {
           </div>
         </div>
       </div>
-      {/* body 2 */}
-
       <div className={cx("bodyy")}>
         <div className={cx("nd")}>
           <h1>Nội dung phim</h1>
           <i>{dtDetai.content}</i>
         </div>
-
-        {/* list episodes of movie */}
-
         {episodes.map((episode, index) => (
           <div className={cx("tp")}>
             <div className={cx("title")}>
@@ -129,7 +124,7 @@ function MovieDetails() {
             <div className={cx("episodes")}>
               {" "}
               {episode.server_data.map((tap, index) => (
-                <Link to={`/watch-movie/${dtDetai.slug}-tap${tap.name}`}>
+                <Link to={`/watch-movie/${dtDetai.slug}/tap/${tap.name}`}>
                   {" "}
                   <button key={index.slug}>{tap.name}</button>
                 </Link>
@@ -141,5 +136,3 @@ function MovieDetails() {
     </div>
   );
 }
-
-export default MovieDetails;

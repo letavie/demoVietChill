@@ -2,12 +2,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import tgmq from "../../assets/images/TGMQ.jpg";
-import { Cartoon } from "../../components/layout/category/cartoon/cartoon";
-import { Popular } from "../../components/layout/category/popular";
-import { Comedy } from "../../components/layout/category/comedy/comedy";
+import { Popular } from "../../components";
+import { Cartoon } from "../../components";
+import { Comedy } from "../../components";
 const cx = classNames.bind(styles);
 
 export default function Home() {

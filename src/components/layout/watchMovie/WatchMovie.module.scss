@@ -1,0 +1,116 @@
+.contai {
+  padding: 50px 0px;
+  min-height: 150vh;
+  background-color: rgb(51, 51, 51);
+
+  .content {
+    min-height: 80vh;
+    background-color: #242424;
+    margin: 50px 150px 0px 150px;
+    padding: 10px;
+    color: aliceblue;
+    border-radius: 10px;
+
+    .header {
+      display: flex;
+
+      // .imga {
+      //   display: flex;
+      //   justify-content: center;
+      //   align-items: center;
+      //   flex-direction: column;
+      //   width: 30%;
+      //   margin-top: 2rem;
+
+      //   img {
+      //     width: 20vw;
+      //     height: 60vh;
+      //     border-radius: 15px;
+      //   }
+      // }
+
+      .context {
+        width: 100%;
+        color: aliceblue;
+        .title {
+          text-align: center;
+          h1 {
+            color: var(--color-3);
+          }
+        }
+        .detail {
+          table {
+            width: 100%;
+
+            th,
+            td {
+              padding: 8px;
+              text-align: left;
+              border: 1px solid gray;
+            }
+            td:first-child {
+              color: var(--color-3);
+            }
+            th {
+              background-color: #242424;
+            }
+          }
+        }
+      }
+    }
+  }
+  .bodyy {
+    min-height: 60vh;
+    background-color: #242424;
+    margin: 20px 150px;
+    padding: 10px;
+    color: aliceblue;
+    border-radius: 10px;
+    .nd {
+      margin-bottom: 20px;
+      h1 {
+        padding: 5px 15px;
+        border-radius: 8px;
+        background-color: var(--color-3);
+        font-size: 1.5rem;
+        margin: 5px 0px;
+      }
+      i {
+        padding: 20px;
+        margin: 20px;
+      }
+    }
+    .tp {
+      .title {
+        h1 {
+          padding: 5px 15px;
+          border-radius: 8px;
+          background-color: var(--color-3);
+          font-size: 1.5rem;
+          margin: 5px 0px;
+        }
+        p {
+          padding: 20px;
+          margin: 5px 0px;
+        }
+      }
+      .episodes {
+        button {
+          width: 3.65rem;
+          height: 2rem;
+          background-color: #883232;
+          color: rgb(255, 255, 255);
+          margin: 0.5rem 0.5rem;
+          border: none;
+          border-radius: 5px;
+          &:hover {
+            background-color: #9c9393;
+          }
+          &:active {
+            background-color: #612323;
+          }
+        }
+      }
+    }
+  }
+}

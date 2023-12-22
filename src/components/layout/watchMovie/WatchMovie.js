@@ -1,13 +1,72 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import classNames from "classnames/bind";
 import styles from "./WatchMovie.module.scss";
+// import dtcontext from "../../DataContext";
 import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 function WatchMovie() {
-  let { id } = useParams();
-  return <div>hello</div>;
+  const [dtDetai, setDtDetail] = useState({});
+  const [episodes, setEpisodes] = useState([]);
+  let { id, tap } = useParams();
+  // const dt = useContext(dtcontext);
+
+  useEffect(() => {
+    const fetchDetailFilms = async () => {
+      try {
+        const repo = await axios.get(`https://ophim1.com/phim/${id}`);
+        setEpisodes(repo.data.episodes);
+        setDtDetail(repo.data.movie);
+      } catch (error) {
+        console.log("fetch to err", error);
+      }
+    };
+    fetchDetailFilms();
+    window.scrollTo(0, 0);
+  }, []);
+  // console.log(id);
+  // console.log(tap);
+  //handle check tap phim
+  const handeleTapFilms = episodes.find((e) =>
+    e.server_data.some((data) => data.name === tap)
+  );
+  if (!handeleTapFilms) {
+    return <div>the film is nots found</div>;
+  }
+  const { server_name, server_data } = handeleTapFilms;
+  const he = server_data.find((dat) => dat.name === tap);
+  console.log(he.link_embed);
+  return (
+    <div className={cx("contai")}>
+      <div className={cx("content")}>
+        <iframe src={he.link_embed} frameborder="0"></iframe>
+      </div>
+      <div className={cx("bodyy")}>
+        <div className={cx("nd")}>
+          <h1>Nội dung phim</h1>
+          <i>{dtDetai.content}</i>
+        </div>
+        {episodes.map((episode, index) => (
+          <div className={cx("tp")}>
+            <div className={cx("title")}>
+              <h1>Xem phim</h1>
+              <p>SERVER: {server_name}</p>
+            </div>
+            <div className={cx("episodes")}>
+              {" "}
+              {episode.server_data.map((tap, index) => (
+                <Link to={`/watch-movie/${dtDetai.slug}/tap/${tap.name}`}>
+                  {" "}
+                  <button key={index.slug}>{tap.name}</button>
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default WatchMovie;
