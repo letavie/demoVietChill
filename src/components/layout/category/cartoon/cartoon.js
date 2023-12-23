@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import "react-multi-carousel/lib/styles.css";
 import { MultiCarousel } from "../../../Carousel";
 import dtcontext from "../../../DataContext";
+import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 export function Cartoon() {
   const dt = useContext(dtcontext);
@@ -11,7 +12,9 @@ export function Cartoon() {
     .filter((ok) => ok.type === "hoathinh")
     .map((i) => (
       <div className={cx("imga")} key={i._id}>
-        <img src={i.poster_url}></img>
+        <Link to={`detail/${i.slug}`}>
+          <img src={i.poster_url}></img>
+        </Link>
       </div>
     ));
 

@@ -33,7 +33,13 @@ export function MovieDetails() {
       ? dtDetai.director.join(", ")
       : "N/A";
   const contry = (dtDetai.country ?? []).map((cate) => cate.name);
-
+  function ScrollToTarget() {
+    document.getElementById("tapphim").scrollIntoView(true);
+  }
+  //handleActive
+  function handleActive() {
+    const ha = document.querySelector;
+  }
   return (
     // <div>
     //   {dt.dataFilms.movies.map((ok) => (
@@ -43,7 +49,7 @@ export function MovieDetails() {
           <div className={cx("imga")}>
             <img src={dtDetai.thumb_url} alt="img" />
             <div className={cx("xp")}>
-              <button>Xem Phim</button>
+              <button onClick={ScrollToTarget}>Xem Phim</button>
               <button>Trailer</button>
             </div>
           </div>
@@ -126,7 +132,9 @@ export function MovieDetails() {
               {episode.server_data.map((tap, index) => (
                 <Link to={`/watch-movie/${dtDetai.slug}/tap/${tap.name}`}>
                   {" "}
-                  <button key={index.slug}>{tap.name}</button>
+                  <button onClick={handleActive} id="tapphim" key={index.slug}>
+                    {tap.name}
+                  </button>
                 </Link>
               ))}
             </div>

@@ -9,6 +9,7 @@ const cx = classNames.bind(styles);
 function WatchMovie() {
   const [dtDetai, setDtDetail] = useState({});
   const [episodes, setEpisodes] = useState([]);
+
   let { id, tap } = useParams();
   // const dt = useContext(dtcontext);
 
@@ -25,9 +26,34 @@ function WatchMovie() {
     fetchDetailFilms();
     window.scrollTo(0, 0);
   }, []);
-  // console.log(id);
-  // console.log(tap);
-  //handle check tap phim
+  //handelActive
+  // const handelActive = () => {
+  //   const buttons = document.querySelectorAll("button");
+  //   const hehe = buttons.getAttribute;
+  //   hehe.forEach((button) => {
+  //     if (button == tap) {
+  //       button.classList.add("active");
+  //     } else {
+  //       button.classList.remove("active");
+  //     }
+  //   });
+  //   console.log(hehe);
+  // };
+  const handelActive = (selectedTap) => {
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach((button) => {
+      const tapName = button.getAttribute("value");
+
+      if (tapName === selectedTap) {
+        button.classList.add(cx("activeddd"));
+      } else {
+        button.classList.remove(cx("activeddd"));
+      }
+    });
+  };
+
+  //handeleTapFilms
   const handeleTapFilms = episodes.find((e) =>
     e.server_data.some((data) => data.name === tap)
   );
@@ -36,12 +62,13 @@ function WatchMovie() {
   }
   const { server_name, server_data } = handeleTapFilms;
   const he = server_data.find((dat) => dat.name === tap);
-  console.log(he.link_embed);
+
   return (
     <div className={cx("contai")}>
       <div className={cx("content")}>
-        <iframe src={he.link_embed} frameborder="0"></iframe>
+        <iframe src={he.link_embed} allowFullScreen></iframe>
       </div>
+
       <div className={cx("bodyy")}>
         <div className={cx("nd")}>
           <h1>Nội dung phim</h1>
@@ -58,7 +85,13 @@ function WatchMovie() {
               {episode.server_data.map((tap, index) => (
                 <Link to={`/watch-movie/${dtDetai.slug}/tap/${tap.name}`}>
                   {" "}
-                  <button key={index.slug}>{tap.name}</button>
+                  <button
+                    onClick={() => handelActive(tap.name)}
+                    value={tap.slug}
+                    key={index.slug}
+                  >
+                    {tap.name}
+                  </button>
                 </Link>
               ))}
             </div>

@@ -113,19 +113,22 @@
         }
       }
       .episodes {
-        button {
-          width: 3.65rem;
-          height: 2rem;
-          background-color: #883232;
-          color: rgb(255, 255, 255);
-          margin: 0.5rem 0.5rem;
-          border: none;
-          border-radius: 5px;
-          &:hover {
-            background-color: #9c9393;
-          }
-          &:active {
-            background-color: #612323;
+        a {
+          text-decoration: none;
+          button {
+            width: 3.65rem;
+            height: 2rem;
+            background-color: #883232;
+            color: rgb(255, 255, 255);
+            margin: 0.5rem 0.5rem;
+            border: none;
+            border-radius: 5px;
+            &:hover {
+              background-color: #9c9393;
+            }
+            &:active {
+              background-color: #612323;
+            }
           }
         }
       }

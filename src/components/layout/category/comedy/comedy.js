@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import "react-multi-carousel/lib/styles.css";
 import { MultiCarousel } from "../../../Carousel";
 import dtcontext from "../../../DataContext";
+import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 export function Comedy() {
   const dt = useContext(dtcontext);
@@ -12,7 +13,9 @@ export function Comedy() {
     .filter((ok) => ok.category.some((okk) => okk.slug === "hanh-dong"))
     .map((i) => (
       <div className={cx("imga")} key={i._id}>
-        <img src={i.poster_url}></img>
+        <Link to={`detail/${i.slug}`}>
+          <img src={i.poster_url}></img>
+        </Link>
       </div>
     ));
 

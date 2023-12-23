@@ -3,6 +3,7 @@ import styles from "./Header.module.scss";
 import logo from "../../../assets/images/vc1.png";
 import logo2 from "../../../assets/images/vc2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import {
   faCaretDown,
   faSearch,
@@ -13,12 +14,14 @@ function Header() {
   return (
     <div className={cx("header")}>
       <div className={cx("logo")}>
-        <img src={logo2} alt="" />
+        <a href="/">
+          <img src={logo2} alt="logo"></img>
+        </a>
       </div>
       <div className={cx("nav-tab")}>
         <ul className={cx("nav")}>
           <li>
-            <a href="#">Trang chủ</a>
+            <a href="/">Trang chủ</a>
           </li>
           <li>
             <a href="#">Mới & Phổ biến</a>
