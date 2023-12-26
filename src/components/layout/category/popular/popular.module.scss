@@ -5,5 +5,8 @@
     width: 95%;
     max-height: 20.5vh;
     height: 100%;
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }

@@ -4,10 +4,13 @@ import axios from "axios";
 import classNames from "classnames/bind";
 import styles from "./MovieDetails.module.scss";
 import { Link } from "react-router-dom";
+import { FaCheckCircle } from "react-icons/fa";
 const cx = classNames.bind(styles);
 export function MovieDetails() {
   const [dtDetai, setDtDetail] = useState({});
   const [episodes, setEpisodes] = useState([]);
+  const [trailer, setTrailer] = useState(false);
+  const [ids, setIds] = useState("");
   let { id } = useParams();
   useEffect(() => {
     const fetchDetailFilms = async () => {
@@ -40,17 +43,47 @@ export function MovieDetails() {
   function handleActive() {
     const ha = document.querySelector;
   }
+  //handleOn
+  function openModal() {
+    setTrailer(true);
+  }
+  function closeModal() {
+    setTrailer(false);
+  }
+  // handale id for trailer
+  const hadaleId = dtDetai.trailer_url?.slice(32, 43);
   return (
     // <div>
     //   {dt.dataFilms.movies.map((ok) => (
     <div className={cx("contai")}>
+      {trailer && (
+        <div className={cx("modal")}>
+          {dtDetai.trailer_url.length > 0 ? (
+            <div className={cx("con")}>
+              <span onClick={closeModal}>&times;</span>
+              <iframe
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${hadaleId}?si=mTu4pTsq6XM3ZrKX`}
+                frameborder="0"
+                allowFullScreen
+              ></iframe>
+            </div>
+          ) : (
+            <div className={cx("titleModal")}>
+              <span onClick={closeModal}>&times;</span>
+              The movie does not have a trailer
+            </div>
+          )}
+        </div>
+      )}
       <div className={cx("content")}>
         <div className={cx("header")}>
           <div className={cx("imga")}>
             <img src={dtDetai.thumb_url} alt="img" />
             <div className={cx("xp")}>
               <button onClick={ScrollToTarget}>Xem Phim</button>
-              <button>Trailer</button>
+              <button onClick={openModal}>Trailer</button>
             </div>
           </div>
           <div className={cx("context")}>

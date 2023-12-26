@@ -16,16 +16,24 @@ export default function Footer() {
         <Container>
           <div className={cx("icon")}>
             <i>
-              <FontAwesomeIcon icon={faFacebookF} />
+              <a href="https://www.facebook.com/nohacknick">
+                <FontAwesomeIcon icon={faFacebookF} />
+              </a>
             </i>
             <i>
-              <FontAwesomeIcon icon={faTwitter} />
+              <a href="#">
+                <FontAwesomeIcon icon={faTwitter} />
+              </a>
             </i>
             <i>
-              <FontAwesomeIcon icon={faInstagram} />
+              <a href="#">
+                <FontAwesomeIcon icon={faInstagram} />
+              </a>
             </i>
             <i>
-              <FontAwesomeIcon icon={faYoutube} />
+              <a href="#">
+                <FontAwesomeIcon icon={faYoutube} />
+              </a>
             </i>
           </div>
           <Row>

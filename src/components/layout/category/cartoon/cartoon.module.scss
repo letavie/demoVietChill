@@ -5,5 +5,8 @@
     width: 95%;
     max-height: 20.5vh;
     background-size: cover;
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }

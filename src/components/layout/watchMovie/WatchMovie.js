@@ -10,7 +10,7 @@ function WatchMovie() {
   const [dtDetai, setDtDetail] = useState({});
   const [episodes, setEpisodes] = useState([]);
 
-  let { id, tap } = useParams();
+  let { id, taps } = useParams();
   // const dt = useContext(dtcontext);
 
   useEffect(() => {
@@ -27,18 +27,7 @@ function WatchMovie() {
     window.scrollTo(0, 0);
   }, []);
   //handelActive
-  // const handelActive = () => {
-  //   const buttons = document.querySelectorAll("button");
-  //   const hehe = buttons.getAttribute;
-  //   hehe.forEach((button) => {
-  //     if (button == tap) {
-  //       button.classList.add("active");
-  //     } else {
-  //       button.classList.remove("active");
-  //     }
-  //   });
-  //   console.log(hehe);
-  // };
+
   const handelActive = (selectedTap) => {
     const buttons = document.querySelectorAll("button");
 
@@ -55,13 +44,13 @@ function WatchMovie() {
 
   //handeleTapFilms
   const handeleTapFilms = episodes.find((e) =>
-    e.server_data.some((data) => data.name === tap)
+    e.server_data.some((data) => data.name === taps)
   );
   if (!handeleTapFilms) {
     return <div>the film is nots found</div>;
   }
   const { server_name, server_data } = handeleTapFilms;
-  const he = server_data.find((dat) => dat.name === tap);
+  const he = server_data.find((dat) => dat.name === taps);
 
   return (
     <div className={cx("contai")}>
@@ -89,6 +78,9 @@ function WatchMovie() {
                     onClick={() => handelActive(tap.name)}
                     value={tap.slug}
                     key={index.slug}
+                    className={cx({
+                      dfactive: tap.name === taps, // Thêm class 'okla' nếu tap.name bằng với taps
+                    })}
                   >
                     {tap.name}
                   </button>
