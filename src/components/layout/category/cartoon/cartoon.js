@@ -1,5 +1,5 @@
   import classNames from "classnames/bind";
-  import styles from "./Cartoon.module.scss";
+  import styles from "./cartoon.module.scss";
   import React, { useContext } from "react";
   import "react-multi-carousel/lib/styles.css";
   import { MultiCarousel } from "../../../Carousel";
